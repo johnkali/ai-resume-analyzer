@@ -12,7 +12,17 @@ const Upload = () => {
     }
 
     const handleSubmit = (e: FormEvent<HTMLFormElement>)=>{
+    e.preventDefault();
+    const form = e.currentTarget.closest('form');   //access entire form without need for state
+        if(!form) return;
+        const formData = new FormData(form);
 
+
+        const companyName  =  formData.get('company-name');
+        const jobTitle  =  formData.get('job-title');
+        const jobDescription  =  formData.get('job-description');
+
+        console.log(companyName,jobTitle,jobDescription,jobDescription);
     }
 
     return (
