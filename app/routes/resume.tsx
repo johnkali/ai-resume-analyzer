@@ -15,7 +15,7 @@ const Resume = () => {
     const {id} = useParams();
     const [imageUrl, setImageUrl] = useState<string>('');
     const [resumeUrl, setResumeUrl] = useState<string>('');
-    const [feedback, setFeedback] = useState<string>('');
+    const [feedback, setFeedback] = useState<Feedback | null>(null);
     const navigate = useNavigate();
 
     useEffect(() => {
