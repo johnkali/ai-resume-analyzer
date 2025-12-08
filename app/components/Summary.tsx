@@ -1,6 +1,5 @@
 import React from 'react';
 import ScoreGauge from "~/components/ScoreGauge";
-import {createFetchableDevEnvironment} from "vite";
 import ScoreBadge from "~/components/ScoreBadge";
 
 const Category = ({title, score} : {title: string, score: number}) =>{
