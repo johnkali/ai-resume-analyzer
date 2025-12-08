@@ -10,14 +10,14 @@ export  const meta = () => ([
 const Resume = () => {
     const {auth, isLoading, fs, kv} = usePuterStore();
     const {id} = useParams();
-    const [imageUrl, setImageURL] = useState<string>('');
+    const [imageUrl, setImageUrl] = useState<string>('');
     const [resumeUrl, setResumeUrl] = useState<string>('');
     const [feedback, setFeedback] = useState<string>('');
     const navigate = useNavigate();
 
     useEffect(() => {
         const loadResume =  async () => {
-        const resume =  await kv.get(`/resumes/${id}`);
+        const resume =  await kv.get(`resume:${id}`);
 
         if(!resume) return;
 
@@ -27,13 +27,13 @@ const Resume = () => {
         if(!resumeBlob) return;
 
             const pdfBlob =  new Blob([resumeBlob], { type: 'application/pdf' });
-            const resumeURL = URL.createObjectURL(pdfBlob); //extract resume url
+            const resumeUrl = URL.createObjectURL(pdfBlob); //extract resume url
             setResumeUrl(resumeUrl);
 
             const imageBlob =  await fs.read(data.imagePath);
             if(!imageBlob) return;
             const imageUrl = URL.createObjectURL(imageBlob);
-            setImageURL(imageUrl);
+            setImageUrl(imageUrl);
 
             setFeedback(data.feedback);
             console.log(resumeUrl, imageUrl, data.feedback);
